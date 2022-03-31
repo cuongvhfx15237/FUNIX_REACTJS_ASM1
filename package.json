@@ -1,0 +1,27 @@
+{
+  "name": "lab01_1",
+  "version": "1.0.0",
+  "description": "Bai tap ve Node.js va NPM",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "default",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuongvhfx15237/FUNIX_REACTJS_ASM1.git"
+  },
+  "keywords": [
+    "default"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuongvhfx15237/FUNIX_REACTJS_ASM1/issues"
+  },
+  "homepage": "https://github.com/cuongvhfx15237/FUNIX_REACTJS_ASM1#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
