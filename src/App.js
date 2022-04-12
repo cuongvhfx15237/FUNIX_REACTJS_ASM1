@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Navbar , NavbarBrand} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { STAFFS, ROLE, DEPARTMENTS } from './shared/staffs.jsx';
+import StaffList from './components/StaffListComponent'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      Staffs:STAFFS,
+      Roles:ROLE,
+      Depts:DEPARTMENTS
+    }
+  }
+  render(){
+    return(
+      <div>
+        <Navbar dark color="primary">
+          <div className = "container">
+            <NavbarBrand href = "/"> ABC </NavbarBrand>
+          </div>
+        </Navbar>
+        <StaffList Staffs = {this.state.staffs}/>
+        <StaffList Roles = {this.state.Roles}/>
+        <StaffList Depts = {this.state.Depts}/>
+      </div>
+    )
+  }
 }
 
 export default App;
