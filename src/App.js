@@ -23,8 +23,8 @@ class App extends Component {
           </div>
         </Navbar>
         <StaffList Staffs = {this.state.Staffs}/>
-        <StaffList Roles = {this.state.Roles}/>
-        <StaffList Depts = {this.state.Depts}/>
+        {/* <StaffList Roles = {this.state.Roles}/>
+        <StaffList Depts = {this.state.Depts}/> */}
       </div>
     )
   }

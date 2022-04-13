@@ -1,34 +1,43 @@
 import React, {Component} from 'react';
-import {Card, CardImg, CardText, CardBody, CardTitle,} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import dateFormat, { masks } from "dateformat";
+import { ROLE } from '../shared/staffs';
 
 class StaffList extends Component {
-    constructor(props){
-        super(props)
-        this.state={
+    constructor(props) {
+        super(props);
+        this.state = {
             selectedStaff:null};
         }
         onStaffSelected(Staff){
             this.setState({selectedStaff:Staff})
         }
-        renderStaff(Staff, Role, department){
-            if (Staff!= null){
+        renderStaff(Staff, Role, Department){
+            if (Staff != null ){
                 return (
                     <Card>
                         <CardBody>
-                            <CardTitle>{Staff.name}</CardTitle>
-                            <CardText>{Staff.doB}</CardText>
-                            <CardText>{Staff.startDate}</CardText>
-                            <CardText>{department.name}</CardText>
-                            <CardText>{Role.NORMAL_STAFF}</CardText>
-                            <CardText>{Staff.annualLeave}</CardText>
-                            <CardText>{Staff.overTime}</CardText>
+                            <h1>{Staff.name}</h1>
+                            <CardText>Ngày sinh:  {dateFormat(Staff.doB, 'dd/mm/yyyy')}</CardText>
+                            <CardText>Ngày vào công ty: {dateFormat(Staff.startDate, 'dd/mm/yyyy')}</CardText>
+                            <CardText>Phòng ban: {Staff.department.name}
+                            </CardText>
+                            <CardText>Chức vụ:
+                                {()=>{
+                                if (Staff.salaryScale > 1){
+                                    return ROLE.NORMAL_STAFF;
+                                }
+                                else return ROLE.MANAGER_STAFF;}}
+                            </CardText>
+                            <CardText>Số ngày nghỉ còn lại: {Staff.annualLeave}</CardText>
+                            <CardText>Số ngày đã làm thêm: {Staff.overTime}</CardText>
 
                         </CardBody>
                     </Card>
-                )
+                );
             }
             else {
-                return( <div></div>)
+                return <div></div>
             }
         }
         renderImage(Staff){
@@ -36,7 +45,7 @@ class StaffList extends Component {
                 return (
                     <Card>
                         <CardBody>
-                            <CardImg src={Staff.img} alt={Staff.name}/>
+                            <CardImg src={Staff.image} alt={Staff.name}/>
                         </CardBody>
                     </Card>
                 )
@@ -45,22 +54,27 @@ class StaffList extends Component {
                 return( <div></div>)
             }
         }
-        render(){
-            const staf = this.props.Staffs.map((Staffs)=> {
+        render() {
+            const staf = this.props.Staffs.map((Staff)=> {
                 return(
-                    <div key = {Staffs.id} className='col-12 col-md-6 col-xl-3'>
-                        <Card onClick={()=>this.onStaffSelected(Staffs)}>
-                            <CardTitle>AAAA</CardTitle>
+                    <div key = {Staff.id} className='col-12 col-md-6 col-xl-3'>
+                        <Card onClick={()=>this.onStaffSelected(Staff)}>
+                            <CardTitle>{Staff.name}</CardTitle>
                         </Card>
+                        
                     </div>
                 )
             })
+
             return(
                 <div className='container'>
                     <div className='row'>{staf}</div>
                     <div className='row'>
-                        <div className='col-12 col-md-6 col-xl-3'>
+                        <div className='col-12 col-md-6'>
                             {this.renderStaff(this.state.selectedStaff)}
+                        </div>
+                        <div className='col-12 col-md-6 col-xl-3'>
+                            {this.renderImage(this.state.selectedStaff)}
                         </div>
                     </div>
                 </div>
