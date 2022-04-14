@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.card-title:hover {
+color:red;
+background-color: rgba(131, 131, 215, 0.224);
+}
+.card-title {
+  padding: 10px;
+  margin: 0px;
+}
+.card{
+  height:100%;
+}
+button{
+  float: right;
+}
+.navbar{
+  margin-bottom: 10px;
+}
