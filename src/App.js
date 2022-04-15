@@ -30,6 +30,20 @@ class App extends Component {
       </div>
     )
   }
-}
+
+  componentDidMount(){
+    return (
+      <div>
+        <Navbar dark color="primary">
+          <div className = "container-xxl">
+            <NavbarBrand href = "/"> ỨNG DỤNG QUẢN LÝ NHÂN SỰ V1.0</NavbarBrand>
+          </div>
+        </Navbar>
+        <StaffList Staffs = {this.state.Staffs}/>
+      </div>
+    )
+    }
+  }
+
 
 export default App;

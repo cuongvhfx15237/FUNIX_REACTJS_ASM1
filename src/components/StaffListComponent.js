@@ -52,10 +52,12 @@ class StaffList extends Component {
     }
   }
 
+    
   render() {
+    let ClassChange = "col-sm-12 col-md-6 col-xl-2"
     const staf = this.props.Staffs.map((Staff) => {
       return (
-        <div key={Staff.id} className='col-sm-12 col-md-6 col-xl-3'>
+        <div key={Staff.id} className={ClassChange}>
           <Card onClick={() => this.onStaffSelected(Staff)}>
             <CardTitle>{Staff.name}</CardTitle>
           </Card>
@@ -67,17 +69,17 @@ class StaffList extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-4 col-md-4 col-xl-4">
-            <Button
+            <Button id="2 Col" onClick={()=>{ClassChange = document.getElementById('2 Col').title}}
               title="col-sm-12 col-md-6 col-xl-6">
-              2 cột{" "}
+              2 cột
             </Button>
-            <Button
+            <Button id="4 Col" onClick= {()=>{ClassChange = document.getElementById('4 Col').title}}
               title="col-sm-12 col-md-6 col-xl-3">
-              4 cột{" "}
+              4 cột
             </Button>
-            <Button
+            <Button id="6 Col" onClick= {()=>{ClassChange = document.getElementById('6 Col').title}}
               title="col-sm-12 col-md-6 col-xl-2">
-              6 cột{" "}
+              6 cột
             </Button>
           </div>
         </div>
@@ -98,6 +100,12 @@ class StaffList extends Component {
       </div>
     );
   }
+  // HandleColumn1(ClassChange = 'col-sm-12 col-md-6 col-xl3') {
+  //   return ClassChange =  document.getElementById('2 Col').title}
+  // HandleColumn2(ClassChange) {
+  //   return ClassChange =  document.getElementById('4 Col').title;}
+  // HandleColumn3(ClassChange) {
+  //   return ClassChange =  document.getElementById('6 Col').title;}
 }
 
 export default StaffList;
