@@ -2,20 +2,26 @@ import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 import dateFormat from "dateformat";
 import { Button } from 'reactstrap';
-import HandleColumn from "./handleColumn";
 
 class StaffList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedStaff: null,
+      selectedButton:null,
     };
   }
   onStaffSelected(Staff) {
     this.setState({ selectedStaff: Staff });
   }
-
-  renderStaff(Staff) {
+  onselectedButton(BUTTON) {
+    this.setState({ selectedButton: BUTTON})
+    }
+   handleColumn(Butn){
+        return Butn.target.title
+    }
+  //render infomation of staff
+  renderStaff(Staff,) {
     if (Staff != null) {
       return (
         <Card>
@@ -51,10 +57,40 @@ class StaffList extends Component {
       return <div></div>;
     }
   }
-
-    
   render() {
-    let ClassChange = "col-sm-12 col-md-6 col-xl-2"
+    
+    //data of button
+    const Abutton = [
+      {
+        id: "1",
+        name:'2 Cột',
+        ClassChange:'col-sm-12 col-md-6 col-xl-6'
+      },
+      {
+        id: "2",
+        name:'4 Cột',
+        ClassChange:'col-sm-12 col-md-6 col-xl-3'
+      },
+      {
+        id: "3",
+        name:'6 Cột',
+        ClassChange:'col-sm-12 col-md-6 col-xl-2'
+      }
+    ]
+
+    if(BUTTON == null) {
+      let ClassChange='col-sm-12 col-md-6 col-xl-3'
+    const staf = this.props.Staffs.map((Staff) => {
+      return (
+        <div key={Staff.id} className={ClassChange}>
+          <Card onClick={() => this.onStaffSelected(Staff)}>
+            <CardTitle>{Staff.name}</CardTitle>
+          </Card>
+        </div>
+      );
+    })}
+    else {
+    let  ClassChange= this.handleColumn
     const staf = this.props.Staffs.map((Staff) => {
       return (
         <div key={Staff.id} className={ClassChange}>
@@ -64,28 +100,26 @@ class StaffList extends Component {
         </div>
       );
     })
+    }
+    // button control
+
+    const BUTTON = Abutton.map(Butn => {
+      return(
+        <Button 
+          key={Butn.id} 
+          className={"col-sm-4 col-md-4 col-xl-4"} 
+          title={Butn.ClassChange} 
+          onClick={this.onselectedButton}>
+          {Butn.name}
+        </Button>
+    )})
 
     return (
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm-4 col-md-4 col-xl-4">
-            <Button id="2 Col" onClick={()=>{ClassChange = document.getElementById('2 Col').title}}
-              title="col-sm-12 col-md-6 col-xl-6">
-              2 cột
-            </Button>
-            <Button id="4 Col" onClick= {()=>{ClassChange = document.getElementById('4 Col').title}}
-              title="col-sm-12 col-md-6 col-xl-3">
-              4 cột
-            </Button>
-            <Button id="6 Col" onClick= {()=>{ClassChange = document.getElementById('6 Col').title}}
-              title="col-sm-12 col-md-6 col-xl-2">
-              6 cột
-            </Button>
-          </div>
+        <div className="row">{BUTTON}</div>
+        <br></br>        
+        <div className="row">{staf}
         </div>
-        <br></br>
-
-        <div className="row">{staf}</div>
         <div className="row">
           Bấm vào tên Nhân Viên để xem thông tin cụ thể.
         </div>
@@ -98,14 +132,8 @@ class StaffList extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-  // HandleColumn1(ClassChange = 'col-sm-12 col-md-6 col-xl3') {
-  //   return ClassChange =  document.getElementById('2 Col').title}
-  // HandleColumn2(ClassChange) {
-  //   return ClassChange =  document.getElementById('4 Col').title;}
-  // HandleColumn3(ClassChange) {
-  //   return ClassChange =  document.getElementById('6 Col').title;}
-}
+    )};
+        }
+        
 
 export default StaffList;

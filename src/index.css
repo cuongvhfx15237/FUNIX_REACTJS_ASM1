@@ -25,3 +25,6 @@ background-color: rgba(131, 131, 215, 0.224);
 .navbar{
   margin-bottom: 10px;
 }
+form {
+  justify-content: space-around;
+}
