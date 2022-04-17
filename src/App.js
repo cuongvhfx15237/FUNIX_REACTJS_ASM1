@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Navbar , NavbarBrand} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 import { STAFFS } from './shared/staffs.jsx';
 import StaffList from './components/StaffListComponent'
+// import './index.css'
 
 
 
@@ -30,18 +32,6 @@ class App extends Component {
       </div>
     )
   } 
-  componentDidMount(){
-    return(
-      <div>
-      <Navbar dark color="primary">
-        <div className = "container-xxl">
-          <NavbarBrand href = "/"> ỨNG DỤNG QUẢN LÝ NHÂN SỰ V2.0</NavbarBrand>
-        </div>
-      </Navbar>
-      <StaffList Staffs = {this.state.Staffs}/>
-    </div>
-    )
-  }
 }
 
 
