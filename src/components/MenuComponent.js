@@ -7,6 +7,7 @@ import {
   CardBody,
   CardTitle,
 } from "reactstrap";
+import DishDetail from "./DishdetailComponent"
 
 class Menu extends Component {
   constructor(props) {
@@ -18,45 +19,7 @@ class Menu extends Component {
   onDishSelect(dish) {
     this.setState({ selectedDish: dish });
   }
-  renderDish(dish) {
-    if (dish != null) {
-      return (
-        <Card>
-          <CardImg top src={dish.image} alt={dish.name}/>
-            <CardBody>
-              <CardTitle>{dish.name}</CardTitle>
-              <CardText>{dish.description}</CardText>
-            </CardBody>
-        </Card>
-
-      );
-    } else {
-      return <div></div>;
-    }
-  }
-  renderComment(dish){
-    if (dish != null) {
-        return (
-
-            <Card>
-              <CardBody>
-              <h2>Comments</h2>
-              {dish.comments.map(function(comments){
-                return(
-                <div>
-                <CardText>{comments.comment}</CardText>
-                <CardText>{comments.author}, {comments.date}</CardText>
-                <br></br>
-                </div>)
-              })}
-              </CardBody>
-          </Card>
-                );
-      } 
-      else {
-        return <div></div>;
-      }
-  }
+  
   render() {
     const menu = this.props.dishes.map((dish) => {
       return (
@@ -70,20 +33,14 @@ class Menu extends Component {
         </div>
       );
     });
+   const dataPass = this.state.selectedDish;
     return (
+    
       <div className="container">
         <div className="row">{menu}</div>
-        <div className="row">
-          <div className="col-12 col-md-5 m-1">
-            {this.renderDish(
-              this.state.selectedDish)}
-            </div>
-          <div className="col-12 col-md-5 m-1">
-            {this.renderComment(this.state.selectedDish)}
-          </div>
-        </div>
+        <DishDetail dataPass = {this.state.selectedDish}/>
       </div>
     );
   }
-}
+} 
 export default Menu;

@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand } from "reactstrap";
 import "./App.css";
 import { DISHES } from "./shared/dishes";
 import Menu from "./components/MenuComponent";
+import DishDetail from "./components/DishdetailComponent";
 // import { Component } from "react/cjs/react.production.min";
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
   }
   render() {
     return (
+      
       <div>
         <Navbar dark color="primary">
           <div className="container">
@@ -23,6 +25,7 @@ class App extends Component {
         <Menu dishes={this.state.dishes} />
       </div>
     );
+
   }
 }
 
